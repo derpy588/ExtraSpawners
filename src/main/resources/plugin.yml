@@ -1,0 +1,6 @@
+name: ExtraSpawners
+version: '${project.version}'
+main: me.derpy.extraspawners.Main
+api-version: 1.17
+authors: [ derpy588 ]
+description: This is a plugin that allows you to make spawners so much better
