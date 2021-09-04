@@ -1,6 +1,7 @@
 package me.derpy.extraspawners;
 
 import me.derpy.extraspawners.Commands.Base;
+import me.derpy.extraspawners.Events.BlockBreak;
 import me.derpy.extraspawners.Events.BlockPlace;
 import me.devtec.theapi.TheAPI;
 import org.bukkit.Bukkit;
@@ -21,6 +22,7 @@ public final class Main extends JavaPlugin {
         //End
         //Event Register
         Bukkit.getPluginManager().registerEvents(new BlockPlace(this), this);
+        Bukkit.getPluginManager().registerEvents(new BlockBreak(this), this);
         //end
 
     }
