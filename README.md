@@ -19,11 +19,9 @@ This plugin is made for a all in one spawners expirence. Currently it doesn't ha
 - On breaking a spawner with silk touch you get the spawner back
 
 ## Upcoming Features
-- Support from 1.13-1.17
 - Spawner Crafting
 - Mob Egg Crafting
 - Custom GUI for spawners
 - Everything Custimzable with settings file and gui
 - Support for custom mobs
-- Improved command system
 - And More!
