@@ -6,7 +6,7 @@ Current Version: 0.1.1-beta
 This plugin is made for a all in one spawners expirence. Currently it doesn't have many features but I am working on making it amazing. You can see below the current features and up coming features to come. When this plugin comes out of beta there will be a paid version and a free version. Both will be amazing. But Buying the paid version will help support me and you get even more features.
 
 ## Requirments
-- Tested Version: 1.16, 1.17 (Other versions might work I just haven't tested it)
+- Versions: 1.13-1.17
 
 ## How To Install
 1. Go to Releases on the github
