@@ -7,6 +7,7 @@ import dev.jorel.commandapi.arguments.IntegerArgument;
 import dev.jorel.commandapi.arguments.PlayerArgument;
 import dev.jorel.commandapi.exceptions.WrapperCommandSyntaxException;
 import dev.jorel.commandapi.executors.CommandExecutor;
+import me.derpy.extraspawners.Items.Spawner;
 import me.derpy.extraspawners.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -20,6 +21,7 @@ import org.bukkit.persistence.PersistentDataType;
 import redempt.redlib.itemutils.ItemBuilder;
 import redempt.redlib.itemutils.ItemUtils;
 
+import java.util.List;
 import java.util.Locale;
 
 public class ExtraSpawners {
@@ -48,18 +50,12 @@ public class ExtraSpawners {
                     EntityType entity = (EntityType) args[1] ;
                     Integer amount = (Integer) args[2];
 
-                    NamespacedKey key = new NamespacedKey(plugin, "spawner-mob-type");
-
-                    String capName = entity.name().toLowerCase().substring(0,1).toUpperCase()+entity.name().toLowerCase().substring(1);
-
-                    ItemStack spawner = new ItemBuilder(Material.SPAWNER)
-                            .setName(ChatColor.translateAlternateColorCodes('&', "&e&lSpawner: &r&d"+capName))
-                            .setCount(amount);
-                    ItemMeta meta = spawner.getItemMeta();
-                    meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, entity.name());
-                    spawner.setItemMeta(meta);
-
-                    target.getInventory().addItem(spawner);
+                    ItemStack spawner = new Spawner().giveSpawner(plugin, entity, amount);
+                    if (spawner != null) {
+                        target.getInventory().addItem(spawner);
+                    }else {
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&cThat entity is not enabled. Change enabled entities in config file."));
+                    }
                 });
 
 

@@ -1,5 +1,6 @@
 package me.derpy.extraspawners.events;
 
+import me.derpy.extraspawners.Items.Spawner;
 import me.derpy.extraspawners.Main;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -32,23 +33,18 @@ public class BreakBlock implements Listener {
             Player player = e.getPlayer();
             if (player.getGameMode() != GameMode.CREATIVE){
                 //Check for silk touch
+                int minLevel = plugin.getConfig().getInt("minSilkTouchLevel");
                 ItemStack playerHand = e.getPlayer().getInventory().getItemInMainHand();
                 if (playerHand.containsEnchantment(Enchantment.SILK_TOUCH)){
-                    NamespacedKey key = new NamespacedKey(plugin, "spawner-mob-type");
-                    BlockState state = block.getState();
-                    CreatureSpawner spawnerBlock = ((CreatureSpawner) state);
-                    EntityType type = spawnerBlock.getSpawnedType();
-                    //ItemStack Spawner
-                    String capName = type.name().toLowerCase().substring(0,1).toUpperCase()+type.name().toLowerCase().substring(1);
-
-                    ItemStack spawner = new ItemBuilder(Material.SPAWNER)
-                            .setName(ChatColor.translateAlternateColorCodes('&', "&e&lSpawner: &r&d"+capName))
-                            .setCount(1);
-                    ItemMeta meta = spawner.getItemMeta();
-                    meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, type.name());
-                    spawner.setItemMeta(meta);
-                    //Dropping Item
-                    e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), spawner);
+                    if (playerHand.getEnchantmentLevel(Enchantment.SILK_TOUCH) >= minLevel){
+                        BlockState state = block.getState();
+                        CreatureSpawner spawnerBlock = ((CreatureSpawner) state);
+                        EntityType type = spawnerBlock.getSpawnedType();
+                        //ItemStack Spawner
+                        ItemStack spawner = new Spawner().giveSpawner(plugin, type, 1);
+                        //Dropping Item
+                        e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), spawner);
+                    }
                 }
             }
         }
