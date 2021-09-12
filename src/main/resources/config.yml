@@ -1,0 +1,11 @@
+#The min for silk touch level
+#Default: 1
+minSilkTouchLevel: 1
+
+#Enabled mobs
+#Mob name needs to be all caps
+EnabledMobs:
+  - SHEEP
+  - COW
+  - PIG
+  - CHICKEN
